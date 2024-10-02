@@ -7,11 +7,19 @@
 
 atmsc::atmsc(const char login[100], const char pass[100], double initbalance) : plogin(login), ppass(pass), pinitbalance(initbalance) {}
 
+std::string atmsc::getLogin() const {
+    return plogin;
+}
+
+std::string atmsc::getPass() const {
+    return ppass;
+}
+
 bool atmsc::withdraw(double amount)
 {
-    if(amount > pinitbalance)
+    if(amount > pinitbalance || amount < 0)
     {
-        mvprintw(1,1,"Invalid amount to withdraw");
+        return false;
     }
     pinitbalance -= amount;
     return true;
@@ -19,5 +27,14 @@ bool atmsc::withdraw(double amount)
 
 void atmsc::deposit(double amount)
 {
-    pinitbalance += amount;
+    if(amount < 0) {
+        mvprintw(10,10,"Invalid amount to deposit");
+    }
+    else {
+        pinitbalance += amount;
+    }
+}
+
+double atmsc::getBalance() const{
+    return pinitbalance;
 }

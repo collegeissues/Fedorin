@@ -1,0 +1,3 @@
+/Users/sterensnesterov/Documents/GitHub/Fedorin/cmake-build-debug/CMakeFiles/Fedorin.dir
+/Users/sterensnesterov/Documents/GitHub/Fedorin/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/sterensnesterov/Documents/GitHub/Fedorin/cmake-build-debug/CMakeFiles/rebuild_cache.dir

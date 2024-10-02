@@ -1,5 +1,5 @@
 #include <cmath>
-#include <cstdint>
+//#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -7,7 +7,9 @@
 #include "accm.h"
 #include "atmSystemControls.h"
 //#include "atmSystemControls.h"
+#include <iomanip>
 #include <ncurses.h>
+#include <sstream>
 #include <unistd.h>
 //#include <string>
 // WARN! Compile with atmElementManagement.cpp
@@ -17,8 +19,10 @@
 int auth;
 char templog[100];
 char temppass[100];
-char amountm[100];
 int userCounter=0;
+
+char input[10]; // буфер для ввода строки
+double amountm;
 
 accm accm;
 
@@ -75,7 +79,12 @@ int main()
                     mvprintw(6,5,"------------------------");
                     mvprintw(8,5,"Name |");
                     mvprintw(8,29-strlen(templog),templog);
-                    mvprintw(9,5,"Balance |        100,23$");
+                    double balance = accm.getCurrentAccountBalance();
+                    mvprintw(9,5,"Balance |");
+                    std::ostringstream balanceStream;
+                    balanceStream << std::fixed << std::setprecision(2) << balance;
+                    std::string balanceStr = balanceStream.str();
+                    mvprintw(9,29-strlen(balanceStr.c_str()), "%.2f", balance);
                     mvprintw(10,5,"Bill number |  123456789");
                     mvprintw(14,5,"------------------------");
                     mvprintw(15,5,"Press any button to exit");
@@ -88,8 +97,6 @@ int main()
                     int tempYpos=1;
                     clear();
 
-                    atmsc* atmsc = accm.getCurrentAccount();
-
                     mvprintw(1,5,"authorized as ");
                     if (strlen(templog)>8){tempYpos=2;};
                     mvprintw(tempYpos,27-strlen(templog),"[");
@@ -101,12 +108,26 @@ int main()
                     mvprintw(14,5,"------------------------");
                     mvprintw(15,5,"Press any button to exit");
                     mvprintw(8,5,"Amount to deposit: ");
-                    getstr(amountm);
-                    double amount;
-                    if (atmsc->withdraw(amount))
+                    getstr(input);
+                    amountm = atof(input); // для конверnfwbb
+
+                    if(accm.getCurrentAccount())
                     {
-                        mvprintw(1,1,"Successes!");
+                            if(accm.getCurrentAccount()->withdraw(amountm))
+                            {
+                                mvprintw(9,5,"Withdraw successful!");
+                            }
+                            else
+                            {
+                                mvprintw(9,5,"Withdraw failed! Insufficient funds.");
+                            }
                     }
+                    else
+                    {
+                        mvprintw(9,5,"No account selected.");
+                    }
+                    refresh();
+
                     ch=getch();
                     clear();
                     switch(ch){case'q':break;};
@@ -129,10 +150,19 @@ int main()
                     mvprintw(14,5,"------------------------");
                     mvprintw(15,5,"Press any button to exit");
                     mvprintw(8,5,"Amount to deposit: ");
-                    double amount;
-                    getstr(amountm);
-                    atmsc->deposit(amount);
-                    mvprintw(1,1,"Successes!");
+                    getstr(input);
+                    amountm = atof(input);
+                    if(accm.getCurrentAccount())
+                    {
+                        accm.getCurrentAccount()->deposit(amountm);
+                        mvprintw(9,5,"Deposit successful!");
+
+                    }
+                    else
+                    {
+                        mvprintw(9,5,"No account selected.");
+                    }
+                    refresh();
                     ch=getch();
                     clear();
                     switch(ch){case'q':break;};
@@ -165,7 +195,22 @@ int main()
                                     mvprintw(5,5,"Login: ");
                                     getstr(templog); 
                                     mvprintw(7,5,"Pass: ");
-                                    getstr(temppass); 
+                                    getstr(temppass);
+
+                                    if(accm.loginAcc(templog,temppass)) {
+                                        mvprintw(9,5,"Welcome!");
+                                        auth=1;
+                                    }
+                                    else {
+                                        mvprintw(9,5,"Login failed! Pls try again");
+                                        mvprintw(14,5,"------------------------");
+                                        mvprintw(15,5,"Press any button to exit");
+                                        ch = getch();
+                                        clear();
+                                        switch(ch){case'q':break;};
+                                        auth=0;
+                                    }
+                                    refresh();
                                 }
                                 else
                                 {
@@ -179,14 +224,18 @@ int main()
                                     //atm.addAcc();
                                 
                                     accm.addAcc(templog, temppass, 0.0);
+                                    // ch =
+                                    //     getch();
+                                    // switch (ch){case KEY_UP:break;};
+                                    auth=1;
                                 }
                                 ch='q';
                         }
-                    }while(ch!='q');
+                    }while(ch!='q' && auth!=1);
                     clear();
                     ch=' ';
-                    if(templog[1]!=' '){auth=1;}
-                    else{auth=0;};
+                    //if(templog[1]!=' '){auth=1;}
+                    //else{auth=0;};
                 }
                 ch=' ';
                 break;
