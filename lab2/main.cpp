@@ -9,3 +9,7 @@ int main()
     std::cout << "Сложение: " << money1 + money2 << std::endl;
     std::cout << "Вычитание: " << money1 - money2 << std::endl;
 }
+
+//
+
+//

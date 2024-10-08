@@ -1,9 +1,4 @@
 # ninja log v6
-1	159	1727812183817157612	CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o	95ff4711c89a66f2
-1	236	1727812183817282653	CMakeFiles/Fedorin.dir/lab1/ca.cpp.o	2b60585b0d26a10d
-1	243	1727812183816886197	CMakeFiles/Fedorin.dir/lab1/accm.cpp.o	a85ea8bdb5728a07
-13	217	1727863389427529119	CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o	95ff4711c89a66f2
-13	290	1727863389427661493	CMakeFiles/Fedorin.dir/lab1/ca.cpp.o	2b60585b0d26a10d
 11	342	1728297895203723424	CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o	95ff4711c89a66f2
-11	408	1728297895203211555	CMakeFiles/Fedorin.dir/lab1/accm.cpp.o	a85ea8bdb5728a07
 12	416	1728297895204155877	CMakeFiles/Fedorin.dir/lab1/ca.cpp.o	2b60585b0d26a10d
+11	408	1728297895203211555	CMakeFiles/Fedorin.dir/lab1/accm.cpp.o	a85ea8bdb5728a07
