@@ -39,7 +39,11 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Fedorin::@6890427a1f51a3e7e1df",
+<<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-e41c045ed4ebb90037ea.json
 					"jsonFile" : "target-Fedorin-Debug-4ac05683392370061ada.json",
+========
+					"jsonFile" : "target-Fedorin-Debug-d03e154342e3e39e2893.json",
+>>>>>>>> origin/main:cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-2057d8018e1ec78851d4.json
 					"name" : "Fedorin",
 					"projectIndex" : 0
 				}
