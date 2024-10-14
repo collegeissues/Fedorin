@@ -10,4 +10,6 @@ add_executable(Fedorin
     lab1/accm.h
     lab1/atmElementManagement.cpp
     lab1/atmSystemControls.h
-    lab1/ca.cpp)
+    lab1/ca.cpp
+        lab2/Fraction.cpp
+        lab2/main.cpp)

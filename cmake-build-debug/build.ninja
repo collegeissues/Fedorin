@@ -51,24 +51,38 @@ build cmake_object_order_depends_target_Fedorin: phony || .
 
 build CMakeFiles/Fedorin.dir/lab1/accm.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab1/accm.cpp || cmake_object_order_depends_target_Fedorin
   DEP_FILE = CMakeFiles/Fedorin.dir/lab1/accm.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
   OBJECT_DIR = CMakeFiles/Fedorin.dir
   OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab1
 
 build CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab1/atmElementManagement.cpp || cmake_object_order_depends_target_Fedorin
   DEP_FILE = CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
   OBJECT_DIR = CMakeFiles/Fedorin.dir
   OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab1
 
 build CMakeFiles/Fedorin.dir/lab1/ca.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab1/ca.cpp || cmake_object_order_depends_target_Fedorin
   DEP_FILE = CMakeFiles/Fedorin.dir/lab1/ca.cpp.o.d
-  FLAGS = -g -std=gnu++14 -arch arm64 -fcolor-diagnostics
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
   OBJECT_DIR = CMakeFiles/Fedorin.dir
   OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab1
+
+build CMakeFiles/Fedorin.dir/lab2/Fraction.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab2/Fraction.cpp || cmake_object_order_depends_target_Fedorin
+  DEP_FILE = CMakeFiles/Fedorin.dir/lab2/Fraction.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
+  OBJECT_DIR = CMakeFiles/Fedorin.dir
+  OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab2
+
+build CMakeFiles/Fedorin.dir/lab2/main.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab2/main.cpp || cmake_object_order_depends_target_Fedorin
+  DEP_FILE = CMakeFiles/Fedorin.dir/lab2/main.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
+  OBJECT_DIR = CMakeFiles/Fedorin.dir
+  OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab2
 
 
 # =============================================================================
@@ -78,8 +92,8 @@ build CMakeFiles/Fedorin.dir/lab1/ca.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debu
 #############################################
 # Link the executable Fedorin
 
-build Fedorin: CXX_EXECUTABLE_LINKER__Fedorin_Debug CMakeFiles/Fedorin.dir/lab1/accm.cpp.o CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o CMakeFiles/Fedorin.dir/lab1/ca.cpp.o
-  FLAGS = -g -arch arm64
+build Fedorin: CXX_EXECUTABLE_LINKER__Fedorin_Debug CMakeFiles/Fedorin.dir/lab1/accm.cpp.o CMakeFiles/Fedorin.dir/lab1/atmElementManagement.cpp.o CMakeFiles/Fedorin.dir/lab1/ca.cpp.o CMakeFiles/Fedorin.dir/lab2/Fraction.cpp.o CMakeFiles/Fedorin.dir/lab2/main.cpp.o
+  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk
   OBJECT_DIR = CMakeFiles/Fedorin.dir
   POST_BUILD = :
   PRE_LINK = :
