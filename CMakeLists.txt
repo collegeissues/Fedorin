@@ -12,4 +12,5 @@ add_executable(Fedorin
     lab1/atmSystemControls.h
     lab1/ca.cpp
         lab2/Fraction.cpp
-        lab2/main.cpp)
+        lab2/main.cpp
+        lab2/Money.cpp)

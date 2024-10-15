@@ -1,69 +1,39 @@
+#ifndef MONEY_H
+#define MONEY_H
+
 #include <iostream>
-#include <vector>
-#include <string>
 #include "Fraction.h"
 
 class Money {
 private:
-    std::vector<int> amount;  // Массив цифр, представляющий сумму
+    Fraction amount;  // представляем сумму с помощью фракшион х
 
 public:
-    // Конструктор
-    Money(const std::string& str_amount) {
-        if (str_amount.length() > 100) {
-            throw std::invalid_argument("Слишком длинная сумма, максимум 100 цифр.");
-        }
-        // Заполняем вектор цифрами, начиная с младших
-        for (auto it = str_amount.rbegin(); it != str_amount.rend(); ++it) {
-            amount.push_back(*it - '0');
-        }
-    }
+    // Конструкторы
+    Money(long long rubles = 0, unsigned short kopecks = 0);
+    Money(const Fraction& frac);
 
-    // Преобразование в объект Fraction
-    Fraction toFraction() const {
-        long long whole_part = 0;
-        unsigned short fractional_part = 0;
+    Money operator+(const Money& other) const;
+    Money operator-(const Money& other) const;
 
-        // Получаем дробную часть
-        if (amount.size() >= 2) {
-            fractional_part = amount[1] * 10 + amount[0];
-        } else if (amount.size() == 1) {
-            fractional_part = amount[0];
-        }
+    Money operator*(double factor) const;
+    Money operator/(double divisor) const;
 
-        // Получаем целую часть
-        if (amount.size() > 2) {
-            for (size_t i = amount.size() - 1; i >= 2; --i) {
-                whole_part = whole_part * 10 + amount[i];
-            }
-        }
+    double operator/(const Money& other) const;
 
-        return Fraction(whole_part, fractional_part);
-    }
+    bool operator==(const Money& other) const;
+    bool operator!=(const Money& other) const;
+    bool operator<(const Money& other) const;
+    bool operator<=(const Money& other) const;
+    bool operator>(const Money& other) const;
+    bool operator>=(const Money& other) const;
 
-    // Операция сложения
-    Money operator+(const Money& other) const {
-        Fraction frac1 = this->toFraction();
-        Fraction frac2 = other.toFraction();
-        Fraction result = frac1 + frac2;
+    // вывод
+    friend std::ostream& operator<<(std::ostream& os, const Money& money);
+    //friend std::istream& operator>>(std::istream& is, Money& money);
 
-        return Money(std::to_string(result.getWhole()) + (result.getFractional() < 10 ? "0" : "") + std::to_string(result.getFractional()));
-    }
-
-    // Операция вычитания
-    Money operator-(const Money& other) const {
-        Fraction frac1 = this->toFraction();
-        Fraction frac2 = other.toFraction();
-        Fraction result = frac1 - frac2;
-
-        return Money(std::to_string(result.getWhole()) + (result.getFractional() < 10 ? "0" : "") + std::to_string(result.getFractional()));
-    }
-
-    // Вывод суммы на экран
-    friend std::ostream& operator<<(std::ostream& os, const Money& money) {
-        for (auto it = money.amount.rbegin(); it != money.amount.rend(); ++it) {
-            os << *it;
-        }
-        return os;
-    }
+    long long getRubles() const;
+    unsigned short getKopecks() const;
 };
+
+#endif // MONEY_H

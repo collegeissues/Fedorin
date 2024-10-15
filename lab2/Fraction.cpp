@@ -1,58 +1,63 @@
 #include "Fraction.h"
 #include <stdexcept>
+#include <iomanip>
 
 // Конструктор класса Fraction
 Fraction::Fraction(long long whole_part, unsigned short fractional_part)
     : whole(whole_part), fractional(fractional_part) {
-    if (fractional_part >= 1000) {
-        throw std::invalid_argument("Fractional part must be less than 1000");
+    normalize();
+}
+
+// Нормализация дробной части
+void Fraction::normalize() {
+    if (fractional >= 100) {
+        whole += fractional / 100;
+        fractional = fractional % 100;
+    } else if (fractional < 0) {
+        long long k = (-fractional) / 100 + 1;
+        whole -= k;
+        fractional += k * 100;
     }
 }
 
-// Операция сложения
+long long Fraction::getWhole() const {
+    return whole;
+}
+
+unsigned short Fraction::getFractional() const {
+    return fractional;
+}
+
 Fraction Fraction::operator+(const Fraction& other) const {
-    long long new_whole = this->whole + other.whole;
-    unsigned short new_fractional = this->fractional + other.fractional;
-
-    // Перенос единицы в целую часть, если дробная часть превышает 999
-    if (new_fractional >= 1000) {
-        new_whole += 1;
-        new_fractional -= 1000;
-    }
+    long long new_whole = whole + other.whole;
+    unsigned short new_fractional = fractional + other.fractional;
 
     return Fraction(new_whole, new_fractional);
 }
 
-// Операция вычитания
 Fraction Fraction::operator-(const Fraction& other) const {
-    long long new_whole = this->whole - other.whole;
-    unsigned short new_fractional;
+    long long new_whole = whole - other.whole;
+    int new_fractional = fractional - other.fractional;
 
-    if (this->fractional >= other.fractional) {
-        new_fractional = this->fractional - other.fractional;
-    } else {
-        new_fractional = (this->fractional + 1000) - other.fractional;
-        new_whole -= 1;
-    }
-
-    return Fraction(new_whole, new_fractional);
+    return Fraction(new_whole, static_cast<unsigned short>(new_fractional));
 }
 
-// Операция умножения
 Fraction Fraction::operator*(const Fraction& other) const {
-    long long total1 = this->whole * 1000 + this->fractional;
-    long long total2 = other.whole * 1000 + other.fractional;
+    long long total1 = whole * 100 + fractional;
+    long long total2 = other.whole * 100 + other.fractional;
 
-    long long result_total = (total1 * total2) / 1000;
-    long long new_whole = result_total / 1000;
-    unsigned short new_fractional = result_total % 1000;
+    long long result_total = (total1 * total2) / 100;
+    long long new_whole = result_total / 100;
+    unsigned short new_fractional = result_total % 100;
 
     return Fraction(new_whole, new_fractional);
 }
 
-// Операторы сравнения
+
+
+
 bool Fraction::operator==(const Fraction& other) const {
-    return this->whole == other.whole && this->fractional == other.fractional;
+    return whole == other.whole && fractional == other.fractional;
 }
 
 bool Fraction::operator!=(const Fraction& other) const {
@@ -60,10 +65,10 @@ bool Fraction::operator!=(const Fraction& other) const {
 }
 
 bool Fraction::operator<(const Fraction& other) const {
-    if (this->whole == other.whole) {
-        return this->fractional < other.fractional;
+    if (whole == other.whole) {
+        return fractional < other.fractional;
     }
-    return this->whole < other.whole;
+    return whole < other.whole;
 }
 
 bool Fraction::operator<=(const Fraction& other) const {
@@ -78,17 +83,9 @@ bool Fraction::operator>=(const Fraction& other) const {
     return !(*this < other);
 }
 
-// Оператор вывода в поток
+// dsdjl
 std::ostream& operator<<(std::ostream& os, const Fraction& frac) {
-    os << frac.whole << ".";
-
-    // Обеспечиваем вывод ведущих нулей для дробной части
-    if (frac.fractional < 10)
-        os << "00" << frac.fractional;
-    else if (frac.fractional < 100)
-        os << "0" << frac.fractional;
-    else
-        os << frac.fractional;
-
+    os << frac.whole << ',';
+    os << std::setw(2) << std::setfill('0') << frac.fractional;
     return os;
 }

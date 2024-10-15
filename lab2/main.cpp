@@ -1,29 +1,40 @@
 #include <iostream>
-#include "Fraction.h"
+#include "Money.h"
 
 int main() {
-    Fraction frac1(3, 500);  // Представляет число 3.500
-    Fraction frac2(1, 750);  // Представляет число 1.750
+    Money m1(100, 50);
+    Money m2(200, 75);
 
-    Fraction sum = frac1 + frac2;
-    Fraction diff = frac1 - frac2;
-    Fraction prod = frac1 * frac2;
+    Money sum = m1 + m2;
+    std::cout << m1 << " + " << m2 << " = " << sum << std::endl;
 
-    std::cout << "Frac1: " << frac1 << std::endl;
-    std::cout << "Frac2: " << frac2 << std::endl;
+    Money diff = m2 - m1;
+    std::cout << m2 << " - " << m1 << " = " << diff << std::endl;
 
-    std::cout << "Sum: " << sum << std::endl;          // Ожидается 5.250
-    std::cout << "Difference: " << diff << std::endl;  // Ожидается 1.750
-    std::cout << "Product: " << prod << std::endl;     // Ожидается 5.250
+    double factor = 1.5;
+    Money product = m1 * factor;
+    std::cout << m1 << " * " << factor << " = " << product << std::endl;
 
-    // Проверка операций сравнения
-    if (frac1 > frac2) {
-        std::cout << frac1 << " > " << frac2 << std::endl;
-    } else if (frac1 < frac2) {
-        std::cout << frac1 << " < " << frac2 << std::endl;
+    double divisor = 2.0;
+    Money quotient = m2 / divisor;
+    std::cout << m2 << " / " << divisor << " = " << quotient << std::endl;
+
+    double ratio = m2 / m1;
+    std::cout << m2 << " / " << m1 << " = " << ratio << std::endl;
+
+    if (m1 < m2) {
+        std::cout << m1 << " меньше " << m2 << std::endl;
     } else {
-        std::cout << frac1 << " == " << frac2 << std::endl;
+        std::cout << m1 << " не меньше " << m2 << std::endl;
     }
 
+    // Ввод
+    // Money m3;
+    // std::cout << "Введите сумму в формате 'рубли,копейки': ";
+    // if (std::cin >> m3) {
+    //     std::cout << "Вы ввели: " << m3 << std::endl;
+    // } else {
+    //     std::cerr << "Неверный формат ввода." << std::endl;
+    // }
     return 0;
 }
