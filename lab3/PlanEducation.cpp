@@ -1,5 +1,6 @@
 #include "PlanEducation.h"
 #include <algorithm>
+#include <iostream>
 
 PlanEducation::PlanEducation(const std::string& code, const std::string& specialtyName, const std::string& approvalDate, int standardHours)
     : code(code), specialtyName(specialtyName), approvalDate(approvalDate), standardHours(standardHours) {}
@@ -22,6 +23,14 @@ std::vector<Discipline> PlanEducation::findBySemester(int semester) const {
             result.push_back(discipline);
         }
     }
+    if (result.empty()) {
+        std::cout << "Дисциплины для семестра " << semester << " не найдены.\n";
+    } else {
+        std::cout << "Дисциплины, найденные по семестру " << semester << ":\n";
+        for (const auto& d : result) {
+            std::cout << " - " << d.name << " (ID: " << d.id << ")\n";
+        }
+    }
     return result;
 }
 
@@ -32,6 +41,14 @@ std::vector<Discipline> PlanEducation::findByType(const std::string& type) const
             result.push_back(discipline);
         }
     }
+    if (result.empty()) {
+        std::cout << "Дисциплины типа \"" << type << "\" не найдены.\n";
+    } else {
+        std::cout << "Дисциплины, найденные по типу \"" << type << "\":\n";
+        for (const auto& d : result) {
+            std::cout << " - " << d.name << " (ID: " << d.id << ")\n";
+        }
+    }
     return result;
 }
 
@@ -40,6 +57,14 @@ std::vector<Discipline> PlanEducation::findByControlType(const std::string& cont
     for (const auto& discipline : disciplines) {
         if (discipline.controlType == controlType) {
             result.push_back(discipline);
+        }
+    }
+    if (result.empty()) {
+        std::cout << "Дисциплины с видом итогового контроля \"" << controlType << "\" не найдены.\n";
+    } else {
+        std::cout << "Дисциплины, найденные по виду итогового контроля \"" << controlType << "\":\n";
+        for (const auto& d : result) {
+            std::cout << " - " << d.name << " (ID: " << d.id << ")\n";
         }
     }
     return result;
@@ -67,10 +92,14 @@ std::pair<int, int> PlanEducation::examsAndTestsBySemester(int semester) const {
 
 PlanEducation PlanEducation::operator+(const PlanEducation& other) const {
     PlanEducation result = *this;
+    std::cout << "дублирующиеся:" << std::endl;
     for (const auto& discipline : other.disciplines) {
-        if (std::find_if(result.disciplines.begin(), result.disciplines.end(),
-                         [&](const Discipline& d) { return d.id == discipline.id; }) == result.disciplines.end()) {
+        auto it = std::find_if(result.disciplines.begin(), result.disciplines.end(),
+                               [&](const Discipline& d) { return d.id == discipline.id; });
+        if (it == result.disciplines.end()) {
             result.addDiscipline(discipline);
+        } else {
+            std::cout << " - " << discipline.name << " (ID: " << discipline.id << ")" << std::endl;
         }
     }
     return result;
@@ -86,11 +115,29 @@ PlanEducation PlanEducation::operator-(const PlanEducation& other) const {
 
 PlanEducation PlanEducation::operator*(const PlanEducation& other) const {
     PlanEducation result(code, specialtyName, approvalDate, standardHours);
+    std::cout << "дублирующиеся:" << std::endl;
     for (const auto& discipline : disciplines) {
-        if (std::find_if(other.disciplines.begin(), other.disciplines.end(),
-                         [&](const Discipline& d) { return d.id == discipline.id; }) != other.disciplines.end()) {
+        auto it = std::find_if(other.disciplines.begin(), other.disciplines.end(),
+                               [&](const Discipline& d) { return d.id == discipline.id; });
+        if (it != other.disciplines.end()) {
             result.addDiscipline(discipline);
+            std::cout << " - " << discipline.name << " (ID: " << discipline.id << ")" << std::endl;
         }
     }
     return result;
+}
+
+void PlanEducation::displayDisciplines() const {
+    std::cout << "Список дисциплин в учебном плане:\n";
+    for (const auto& discipline : disciplines) {
+        std::cout << "ID: " << discipline.id
+                  << ", Название: " << discipline.name
+                  << ", Тип: " << discipline.type
+                  << ", Семестр: " << discipline.semester
+                  << ", Итоговый контроль: " << discipline.controlType
+                  << ", Общее количество часов: " << discipline.totalHours
+                  << ", Лекционные часы: " << discipline.lectureHours
+                  << ", Практические часы: " << discipline.practiceHours
+                  << ", Курсовая работа: " << (discipline.hasCourseWork ? "Да" : "Нет") << '\n';
+    }
 }

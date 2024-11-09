@@ -28,6 +28,8 @@ public:
     PlanEducation operator+(const PlanEducation& other) const;
     PlanEducation operator-(const PlanEducation& other) const;
     PlanEducation operator*(const PlanEducation& other) const;
+
+    void displayDisciplines() const;
 };
 
 #endif
