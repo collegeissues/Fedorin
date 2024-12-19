@@ -63,6 +63,27 @@ build CMakeFiles/Fedorin.dir/lab3/main.cpp.o: CXX_COMPILER__Fedorin_unscanned_De
   OBJECT_DIR = CMakeFiles/Fedorin.dir
   OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab3
 
+build CMakeFiles/Fedorin.dir/lab4/Real.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab4/Real.cpp || cmake_object_order_depends_target_Fedorin
+  DEP_FILE = CMakeFiles/Fedorin.dir/lab4/Real.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
+  OBJECT_DIR = CMakeFiles/Fedorin.dir
+  OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab4
+
+build CMakeFiles/Fedorin.dir/lab4/Number.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab4/Number.cpp || cmake_object_order_depends_target_Fedorin
+  DEP_FILE = CMakeFiles/Fedorin.dir/lab4/Number.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
+  OBJECT_DIR = CMakeFiles/Fedorin.dir
+  OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab4
+
+build CMakeFiles/Fedorin.dir/lab4/MenuDrawer.cpp.o: CXX_COMPILER__Fedorin_unscanned_Debug /Users/sterensnesterov/Documents/GitHub/Fedorin/lab4/MenuDrawer.cpp || cmake_object_order_depends_target_Fedorin
+  DEP_FILE = CMakeFiles/Fedorin.dir/lab4/MenuDrawer.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/sterensnesterov/Documents/GitHub/Fedorin/lab1
+  OBJECT_DIR = CMakeFiles/Fedorin.dir
+  OBJECT_FILE_DIR = CMakeFiles/Fedorin.dir/lab4
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Fedorin
@@ -71,7 +92,7 @@ build CMakeFiles/Fedorin.dir/lab3/main.cpp.o: CXX_COMPILER__Fedorin_unscanned_De
 #############################################
 # Link the executable Fedorin
 
-build Fedorin: CXX_EXECUTABLE_LINKER__Fedorin_Debug CMakeFiles/Fedorin.dir/lab3/PlanEducation.cpp.o CMakeFiles/Fedorin.dir/lab3/main.cpp.o
+build Fedorin: CXX_EXECUTABLE_LINKER__Fedorin_Debug CMakeFiles/Fedorin.dir/lab3/PlanEducation.cpp.o CMakeFiles/Fedorin.dir/lab3/main.cpp.o CMakeFiles/Fedorin.dir/lab4/Real.cpp.o CMakeFiles/Fedorin.dir/lab4/Number.cpp.o CMakeFiles/Fedorin.dir/lab4/MenuDrawer.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk
   OBJECT_DIR = CMakeFiles/Fedorin.dir
   POST_BUILD = :

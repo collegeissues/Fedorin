@@ -11,4 +11,10 @@ add_executable(Fedorin
     lab3/PlanEducation.cpp
     lab3/main.cpp
         lab3/main.cpp
+        lab4/Real.cpp
+        lab4/Real.h
+        lab4/Number.cpp
+        lab4/Number.h
+        lab4/MenuDrawer.cpp
+        lab4/MenuDrawer.h
 )
